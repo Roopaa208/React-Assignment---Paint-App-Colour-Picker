@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../styles/App.css';
+import '../styles/Child.css';
 import Selection from './Selection';
 import ColourSelector from './ColourSelector';
 
@@ -26,14 +27,16 @@ const title = 'Select the gradient and then the Box to change the color';
 const App = () => {
   let [nextBackground, selectNextBackground] = useState({ background: "" })
   const applyColor = (updateSelectionStyle) => {
-    updateSelectionStyle(nextBackground)
+    // console.log(updateSelectionStyle.target);
+    // console.log(nextBackground.background);
+    updateSelectionStyle.target.style.backgroundColor = nextBackground.background;
   }
 
   return (
     <div id="master">
-      <h5 className="heading">{/* display title here */}</h5>
+      <h5 className="heading">{title}</h5>
 
-      <div className="row">
+      <div className="holder">
         {colourConfig.map((config, index) => (
           <ColourSelector key={config.key} config={config} selectNextBackground={selectNextBackground} />
         ))}
